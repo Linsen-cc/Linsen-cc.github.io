@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>主页</title>
-    <link>https://www.linsen.ink/</link>
-    <description>Recent content on 主页</description>
+    <title>Posts on 主页</title>
+    <link>https://www.linsen.ink/post/</link>
+    <description>Recent content in Posts on 主页</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 13 Nov 2020 14:17:37 +0800</lastBuildDate><atom:link href="https://www.linsen.ink/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Nov 2020 14:17:37 +0800</lastBuildDate><atom:link href="https://www.linsen.ink/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>金字塔卷积</title>
       <link>https://www.linsen.ink/post/%E9%87%91%E5%AD%97%E5%A1%94%E5%8D%B7%E7%A7%AF/</link>

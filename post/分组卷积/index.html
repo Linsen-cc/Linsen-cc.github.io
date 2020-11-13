@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn" data-theme=""><head>
-    <title> 林森 | Categories </title>
+    <title> 林森 </title>
 
     
     <meta charset="utf-8"><meta name="generator" content="Hugo 0.78.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -21,10 +21,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://www.linsen.ink/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://www.linsen.ink/favicons/favicon-16x16.png">
 
-    <link rel="canonical" href="https://www.linsen.ink/categories/">
+    <link rel="canonical" href="https://www.linsen.ink/post/%E5%88%86%E7%BB%84%E5%8D%B7%E7%A7%AF/">
 
     
-    <link rel="alternate" type="application/rss+xml" href="https://www.linsen.ink/categories/index.xml" title="主页" />
     
     
     
@@ -35,8 +34,10 @@
     <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.linsen.ink/images/site-feature-image.png"/>
 
-<meta name="twitter:title" content="Categories"/>
-<meta name="twitter:description" content="广州大学方滨兴班硕士在读，数据挖掘与图像攻防领域。"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="title: &ldquo;分组卷积&rdquo; date: 2020-11-13T14:55:45&#43;08:00 draft: true
+分组卷积(Group Convolution) 1. 解决问题  最为重要的一点：减少参数量，提高运行速度。  2. 模型结构   输入feature map尺寸为C∗H∗W；
+  卷积核有N个（每个卷积核的尺寸为C∗K∗K，N个卷积核的总参数量为N∗C∗K∗K）；"/>
 
 </head>
 <body><div class="sidebar animated fadeInDown">
@@ -113,22 +114,76 @@
 
     <div class="autopagerize_page_element">
         <div class="content">
-    <div class="archive animated fadeInDown">
-        <ul class="list-with-title">
-            
-                <div class="listing-title">2020</div>
+    <div class="post animated fadeInDown">
+        <div class="post-content">
+
+            <div class="post-title">
+                <h3></h3>
                 
-                    <ul class="listing">
-                        <div class="listing-item">
-                            <div class="listing-post"><a href="https://www.linsen.ink/categories/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="卷积神经网络">卷积神经网络</a>
-                                <div class="post-time"><span class="date">Nov 13</span></div>
-                            </div>
-                        </div>
-                    </ul>
+                    <div class="info">
+                        <em class="fas fa-calendar-day"></em>
+                        <span class="date">Mon, Jan 1, 0001</span>
+                        <em class="fas fa-stopwatch"></em>
+                        <span class="reading-time"></span>
+                    </div>
                 
+            </div>
+
+            <p>title: &ldquo;分组卷积&rdquo;
+date: 2020-11-13T14:55:45+08:00
+draft: true</p>
+<h1 id="分组卷积group-convolution">分组卷积(Group Convolution)</h1>
+<h2 id="1-解决问题">1. 解决问题</h2>
+<ol>
+<li>最为重要的一点：减少参数量，提高运行速度。</li>
+</ol>
+<h2 id="2-模型结构">2. 模型结构</h2>
+<ol>
+<li>
+<p>输入feature map尺寸为C∗H∗W；</p>
+</li>
+<li>
+<p>卷积核有N个（每个卷积核的尺寸为C∗K∗K，N个卷积核的总参数量为N∗C∗K∗K）；</p>
+</li>
+<li>
+<p>输出feature map与卷积核的数量相同也是N；</p>
+</li>
+<li>
+<p>输入map与输出map的连接方式如下图所示。</p>
+<p><img src="https://s2.ax1x.com/2019/01/08/FLPc1x.png" alt="Convolution VS Group Convolution"></p>
+</li>
+</ol>
+<h4 id="21-模型解析">2.1 模型解析</h4>
+<ol>
+<li>
+<p>Group Convolution 对卷积进行分组，然后每组分别卷积。</p>
+</li>
+<li>
+<p>假设输入feature map的尺寸仍为C∗H∗W，输出feature map的数量为N个，如果设定要分成G个groups，<strong>则每组的输入feature map数量为C/G，每组的输出feature map数量为N/G；</strong></p>
+</li>
+<li>
+<p>每个卷积核的尺寸为C/G∗K∗K，卷积核的总数仍为N个，每组的卷积核数量为N/G，卷积核只与其同组的输入map进行卷积，卷积核的总参数量为N∗（C/G）∗K∗K，可见，<strong>总参数量减少为原来的</strong> 1/G，其连接方式如上图所示；</p>
+</li>
+<li>
+<p>group1输出map数为2，有2个卷积核，每个卷积核的channel数为4，与group1的输入map的channel数相同，<strong>卷积核只与同组的输入map卷积，而不与其他组的输入map卷积。</strong></p>
+</li>
+</ol>
+<h2 id="参考文献">参考文献</h2>
+<p><a href="https://www.cnblogs.com/shine-lee/p/10243114.html">Group Convolution分组卷积，以及Depthwise Convolution和Global Depthwise Convolution</a></p>
+
+        </div>
+        <div class="post-footer">
+            <div class="info">
+                
+                
+            </div>
+        </div>
+
+        
             
-        </ul>
+        
     </div>
+
 
         </div>
     </div>

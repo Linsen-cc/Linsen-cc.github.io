@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn" data-theme=""><head>
-    <title> 林森 | Categories </title>
+    <title> 林森 | 金字塔卷积 </title>
 
     
     <meta charset="utf-8"><meta name="generator" content="Hugo 0.78.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -21,10 +21,9 @@
     <link rel="icon" type="image/png" sizes="32x32" href="https://www.linsen.ink/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="https://www.linsen.ink/favicons/favicon-16x16.png">
 
-    <link rel="canonical" href="https://www.linsen.ink/categories/">
+    <link rel="canonical" href="https://www.linsen.ink/post/%E9%87%91%E5%AD%97%E5%A1%94%E5%8D%B7%E7%A7%AF/">
 
     
-    <link rel="alternate" type="application/rss+xml" href="https://www.linsen.ink/categories/index.xml" title="主页" />
     
     
     
@@ -35,8 +34,10 @@
     <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.linsen.ink/images/site-feature-image.png"/>
 
-<meta name="twitter:title" content="Categories"/>
-<meta name="twitter:description" content="广州大学方滨兴班硕士在读，数据挖掘与图像攻防领域。"/>
+<meta name="twitter:title" content="金字塔卷积"/>
+<meta name="twitter:description" content="金字塔卷积（Pyramidal Convolution） 1. 提出背景 作者认为当前的卷积神经网络主要存在有以下两个不足：
+ 实际的感受野不足； 在下采样中，很多的细节信息会丢失。  从上图中可以看出，有在图像中占比较大的建筑，和图像中占比较小的桌子沙发，在使用卷积和提取物体特征时，同一种规格的卷积核不能很好的捕获物体特征。因此作者提出金字塔卷积（Pyramid Convolution）,在卷积网络中包含有不同尺度的卷积核，用以提取更多尺度的信息。
+2. 模型结构 2.1 从上面的结构图可以看出，金字塔卷积在卷积提取特征的过程中：  其卷积核不断的变小； 通道数目在数量上不断增多； 最后将特征图拼接起来，得到最总的输出。  2."/>
 
 </head>
 <body><div class="sidebar animated fadeInDown">
@@ -113,22 +114,71 @@
 
     <div class="autopagerize_page_element">
         <div class="content">
-    <div class="archive animated fadeInDown">
-        <ul class="list-with-title">
-            
-                <div class="listing-title">2020</div>
+    <div class="post animated fadeInDown">
+        <div class="post-content">
+
+            <div class="post-title">
+                <h3>金字塔卷积</h3>
                 
-                    <ul class="listing">
-                        <div class="listing-item">
-                            <div class="listing-post"><a href="https://www.linsen.ink/categories/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" title="卷积神经网络">卷积神经网络</a>
-                                <div class="post-time"><span class="date">Nov 13</span></div>
-                            </div>
-                        </div>
-                    </ul>
+                    <div class="info">
+                        <em class="fas fa-calendar-day"></em>
+                        <span class="date">Fri, Nov 13, 2020</span>
+                        <em class="fas fa-stopwatch"></em>
+                        <span class="reading-time"></span>
+                    </div>
                 
+            </div>
+
+            <h1 id="金字塔卷积pyramidal-convolution">金字塔卷积（Pyramidal Convolution）</h1>
+<h2 id="1-提出背景">1. 提出背景</h2>
+<p>作者认为当前的卷积神经网络主要存在有以下两个不足：</p>
+<ol>
+<li>实际的感受野不足；</li>
+<li>在下采样中，很多的细节信息会丢失。</li>
+</ol>
+<p><img src="https://pic1.zhimg.com/80/v2-91582edfa75744ea598b79033bb7fc04_720w.jpg" alt="img"></p>
+<p>从上图中可以看出，有在图像中占比较大的建筑，和图像中占比较小的桌子沙发，在使用卷积和提取物体特征时，同一种规格的卷积核不能很好的捕获物体特征。因此作者提出金字塔卷积（Pyramid Convolution）,在卷积网络中包含有不同尺度的卷积核，用以提取更多尺度的信息。</p>
+<h2 id="2-模型结构">2. 模型结构</h2>
+<p><img src="https://github.com/iduta/pyconv/raw/master/div/pyconv.jpg" alt="Pyramidal Convolution: PyConv" style="zoom:50%;" /></p>
+<h4 id="21-从上面的结构图可以看出金字塔卷积在卷积提取特征的过程中">2.1 从上面的结构图可以看出，金字塔卷积在卷积提取特征的过程中：</h4>
+<ol>
+<li>其卷积核不断的变小；</li>
+<li>通道数目在数量上不断增多；</li>
+<li>最后将特征图拼接起来，得到最总的输出。</li>
+</ol>
+<h4 id="22-卷积核组规格">2.2 卷积核组规格</h4>
+<p><img src="https://pic1.zhimg.com/80/v2-6c30cc9b757ac34b8fa296230c6b6020_720w.jpg" alt="img"></p>
+<p>卷积金字塔中所以用的卷积核规格如上图所示</p>
+<ol>
+<li>首先是9x9的卷积，数目为16个，共16组；</li>
+<li>首先是7x7的卷积，数目为16个，共8组；</li>
+<li>首先是5x5的卷积，数目为16个，共4组；</li>
+<li>首先是3x3的卷积，数目为16个，共1组；</li>
+<li>最后使用1x1的卷积，使其输出维度为256。</li>
+</ol>
+<h2 id="3-结论">3. 结论</h2>
+<p>作者提出了一种金字塔卷积，它的每一层包含不同尺度的卷积核。PyConv极大的提升了不同视觉任务的性能，同时具有高效性与灵活性。PyConv是一种“即插即用”的模块，可以轻易嵌入到不同的网络架构与应用中，比如可以尝试将其应用到图像复原(超分、降噪、增强等等)应用。</p>
+<h2 id="参考资料">参考资料</h2>
+<ol>
+<li><a href="https://zhuanlan.zhihu.com/p/161679706">卷积金字塔-高峰OUC</a></li>
+<li><a href="https://github.com/iduta/pyconv">pyconv-github/iduta</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1652651">金字塔卷积PyConv来了！&ldquo;即插即用&rdquo;，提升你的网络性能-Amusi</a></li>
+</ol>
+
+        </div>
+        <div class="post-footer">
+            <div class="info">
+                <span class="separator"><a class="category" href="/categories/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络</a></span>
+
+                
+            </div>
+        </div>
+
+        
             
-        </ul>
+        
     </div>
+
 
         </div>
     </div>
