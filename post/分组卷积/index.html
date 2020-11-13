@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-cn" data-theme=""><head>
-    <title> 林森 </title>
+    <title> 林森 | 分组卷积 </title>
 
     
     <meta charset="utf-8"><meta name="generator" content="Hugo 0.78.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -34,10 +34,10 @@
     <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://www.linsen.ink/images/site-feature-image.png"/>
 
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="title: &ldquo;分组卷积&rdquo; date: 2020-11-13T14:55:45&#43;08:00 draft: true
-分组卷积(Group Convolution) 1. 解决问题  最为重要的一点：减少参数量，提高运行速度。  2. 模型结构   输入feature map尺寸为C∗H∗W；
-  卷积核有N个（每个卷积核的尺寸为C∗K∗K，N个卷积核的总参数量为N∗C∗K∗K）；"/>
+<meta name="twitter:title" content="分组卷积"/>
+<meta name="twitter:description" content="分组卷积(Group Convolution) 1. 解决问题  最为重要的一点：减少参数量，提高运行速度。  2. 模型结构   输入feature map尺寸为C∗H∗W；
+  卷积核有N个（每个卷积核的尺寸为C∗K∗K，N个卷积核的总参数量为N∗C∗K∗K）；
+  输出feature map与卷积核的数量相同也是N；"/>
 
 </head>
 <body><div class="sidebar animated fadeInDown">
@@ -118,21 +118,18 @@
         <div class="post-content">
 
             <div class="post-title">
-                <h3></h3>
+                <h3>分组卷积</h3>
                 
                     <div class="info">
                         <em class="fas fa-calendar-day"></em>
-                        <span class="date">Mon, Jan 1, 0001</span>
+                        <span class="date">Fri, Nov 13, 2020</span>
                         <em class="fas fa-stopwatch"></em>
                         <span class="reading-time"></span>
                     </div>
                 
             </div>
 
-            <p>title: &ldquo;分组卷积&rdquo;
-date: 2020-11-13T14:55:45+08:00
-draft: true</p>
-<h1 id="分组卷积group-convolution">分组卷积(Group Convolution)</h1>
+            <h1 id="分组卷积group-convolution">分组卷积(Group Convolution)</h1>
 <h2 id="1-解决问题">1. 解决问题</h2>
 <ol>
 <li>最为重要的一点：减少参数量，提高运行速度。</li>
@@ -174,7 +171,8 @@ draft: true</p>
         </div>
         <div class="post-footer">
             <div class="info">
-                
+                <span class="separator"><a class="category" href="/categories/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">卷积神经网络</a></span>
+
                 
             </div>
         </div>
