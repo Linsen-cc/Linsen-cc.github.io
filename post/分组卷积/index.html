@@ -35,8 +35,8 @@
 <meta name="twitter:image" content="https://www.linsen.ink/images/site-feature-image.png"/>
 
 <meta name="twitter:title" content="分组卷积"/>
-<meta name="twitter:description" content="分组卷积(Group Convolution) 1. 解决问题  最为重要的一点：减少参数量，提高运行速度。  2. 模型结构   输入feature map尺寸为C∗H∗W；
-  卷积核有N个（每个卷积核的尺寸为C∗K∗K，N个卷积核的总参数量为N∗C∗K∗K）；
+<meta name="twitter:description" content="分组卷积(Group Convolution) 1. 提出背景  减少参数量，提高运行速度（卷积核的参数量减少为原来参数数量的1/G，G为分的组数）。  2. 模型结构   输入feature map尺寸为C∗H∗W；
+  卷积核有N个，每个卷积核的尺寸为C∗K∗K，N个卷积核的总参数量为N∗C∗K∗K；
   输出feature map与卷积核的数量相同也是N；"/>
 
 </head>
@@ -130,20 +130,20 @@
             </div>
 
             <h1 id="分组卷积group-convolution">分组卷积(Group Convolution)</h1>
-<h2 id="1-解决问题">1. 解决问题</h2>
+<h2 id="1-提出背景">1. 提出背景</h2>
 <ol>
-<li>最为重要的一点：减少参数量，提高运行速度。</li>
+<li>减少参数量，提高运行速度（卷积核的参数量减少为原来参数数量的1/G，G为分的组数）。</li>
 </ol>
 <h2 id="2-模型结构">2. 模型结构</h2>
 <ol>
 <li>
-<p>输入feature map尺寸为C∗H∗W；</p>
+<p>输入feature map尺寸为<strong>C∗H∗W</strong>；</p>
 </li>
 <li>
-<p>卷积核有N个（每个卷积核的尺寸为C∗K∗K，N个卷积核的总参数量为N∗C∗K∗K）；</p>
+<p>卷积核有N个，每个卷积核的尺寸为C∗K∗K，N个卷积核的<strong>总参数量为N∗C∗K∗K</strong>；</p>
 </li>
 <li>
-<p>输出feature map与卷积核的数量相同也是N；</p>
+<p>输出feature map与卷积核的数量相同也是<strong>N</strong>；</p>
 </li>
 <li>
 <p>输入map与输出map的连接方式如下图所示。</p>
@@ -152,18 +152,10 @@
 </ol>
 <h4 id="21-模型解析">2.1 模型解析</h4>
 <ol>
-<li>
-<p>Group Convolution 对卷积进行分组，然后每组分别卷积。</p>
-</li>
-<li>
-<p>假设输入feature map的尺寸仍为C∗H∗W，输出feature map的数量为N个，如果设定要分成G个groups，<strong>则每组的输入feature map数量为C/G，每组的输出feature map数量为N/G；</strong></p>
-</li>
-<li>
-<p>每个卷积核的尺寸为C/G∗K∗K，卷积核的总数仍为N个，每组的卷积核数量为N/G，卷积核只与其同组的输入map进行卷积，卷积核的总参数量为N∗（C/G）∗K∗K，可见，<strong>总参数量减少为原来的</strong> 1/G，其连接方式如上图所示；</p>
-</li>
-<li>
-<p>group1输出map数为2，有2个卷积核，每个卷积核的channel数为4，与group1的输入map的channel数相同，<strong>卷积核只与同组的输入map卷积，而不与其他组的输入map卷积。</strong></p>
-</li>
+<li>Group Convolution 对卷积进行分组，然后每组分别卷积。</li>
+<li>假设输入feature map的尺寸仍为C∗H∗W，输出feature map的数量为N个，如果设定要分成G个groups，<strong>则每组的输入feature map数量为C/G，每组的输出feature map数量为N/G；</strong></li>
+<li>每个卷积核的尺寸为C/G∗K∗K，卷积核的总数仍为N个，每组的卷积核数量为N/G，卷积核只与其同组的输入map进行卷积，卷积核的总参数量为N∗（C/G）∗K∗K，可见，<strong>总参数量减少为原来的</strong> 1/G，其连接方式如上图所示；</li>
+<li>group1输出map数为2，有2个卷积核，每个卷积核的channel数为4，与group1的输入map的channel数相同，<strong>卷积核只与同组的输入map卷积，而不与其他组的输入map卷积。</strong></li>
 </ol>
 <h2 id="参考文献">参考文献</h2>
 <p><a href="https://www.cnblogs.com/shine-lee/p/10243114.html">Group Convolution分组卷积，以及Depthwise Convolution和Global Depthwise Convolution</a></p>
